@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace PrimeiroDesafio.Servicos
 {
@@ -109,13 +110,23 @@ namespace PrimeiroDesafio.Servicos
             if (nomeValido != true) ReceberDados();
 
 
-            Console.WriteLine("Insire sau data de nascimento: ");
-            DateTime idade = Convert.ToDateTime(Console.ReadLine());
-            DateTime dataNascimento = DateTime.ParseExact(idade, " dd/MM/yyyy ", null);
-            Fluxos.Fluxo.ValidaIdade(dataNascimento);
+            Console.WriteLine("Insire sau data de nascimento: dd/MM/AAAA");
+            var dataNascimento = Convert.ToDateTime(Console.ReadLine());
+
+            DateTime dataHoje = DateTime.Today;
+            var idade = dataHoje - dataNascimento;
+            Console.WriteLine(idade);
+            if (idade.Days < 5840 || idade.Days > 43800)
+            {
+                Console.WriteLine("Idade invaliida.");
+                Console.WriteLine("Você precisar ter entre 16  120 anos.");
+                ReceberDados();
+            }
 
 
-            Console.WriteLine("Insira seu CPF: ");
+
+
+            Console.WriteLine("Insira seu CPF: (Apenas Numeros)");
             string cpf = (Console.ReadLine());
             var cpfValido = Fluxos.Fluxo.ValidarCpf(cpf.Trim());
             if (cpfValido != true)
@@ -123,7 +134,7 @@ namespace PrimeiroDesafio.Servicos
                 Console.WriteLine("Cpf invalido.");
                 ReceberDados();
             }
-            
+
 
 
 
@@ -139,8 +150,5 @@ namespace PrimeiroDesafio.Servicos
             };
 
         }
-
-
-
     }
 }

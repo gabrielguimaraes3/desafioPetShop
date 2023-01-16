@@ -78,24 +78,13 @@ namespace PrimeiroDesafio.Fluxos
             if (nome.Length < 3 || nome.Length > 80)
             {
                 Console.WriteLine("Nome invalido. Tente novamente.");
+
                 return false;
             }
 
             return true;
         }
-        public static bool ValidaIdade(DateTime dataNascimento)
-        {
-            var birthdate = dataNascimento;
-            var today = DateTime.Now;
-            var age = today.Year - birthdate.Year;
-            if (birthdate > today.AddYears(-age)) age--;
-
-            if (age < 16 || age > 120) return false;
-
-            Console.WriteLine(age);
-            
-            return true;
-        }
+       
         public static bool ValidarCpf(string cpf)
         {
             
