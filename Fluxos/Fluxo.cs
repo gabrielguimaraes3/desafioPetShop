@@ -70,6 +70,16 @@ namespace PrimeiroDesafio.Fluxos
             }
             sw.Close();
         }
+        public static bool ValidarDateTime(string dadoEntrada)
+        {
+            try { var valido = Convert.ToDateTime(dadoEntrada); }
+            catch { 
+                Console.WriteLine("Formato de data incorreto.");
+                Console.WriteLine("Tente novamente com o formato correto. DD/MM/AAAA");
+                return false;
+            }
+            return true;
+        }
 
         public static bool ValidacaoNome(string nome)
         {
